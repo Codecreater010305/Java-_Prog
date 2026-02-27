@@ -1,0 +1,11 @@
+class PrintName {
+
+    void display() {
+        System.out.println("Aritra Bhattacharya");
+    }
+
+    public static void main(String[] args) {
+        PrintName obj = new PrintName();  // Object creation
+        obj.display();                    // Method call using object
+    }
+}
