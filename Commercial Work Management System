@@ -1,0 +1,30 @@
+interface SalesDepartment {
+    void processSale(double amount);
+}
+
+interface FinanceDepartment {
+    void generateInvoice(String clientName, double amount);
+}
+
+class CommercialExecutive implements SalesDepartment, FinanceDepartment {
+    public void processSale(double amount) {
+        System.out.println("Sale processed. Amount: $" + amount + ". Sale confirmed!");
+    }
+
+    public void generateInvoice(String clientName, double amount) {
+        System.out.println("Invoice generated for: " + clientName + " | Amount: $" + amount);
+    }
+
+    void showSummary() {
+        System.out.println("Summary: All commercial operations completed successfully.");
+    }
+}
+
+public class CommercialWorkSystem {
+    public static void main(String[] args) {
+        CommercialExecutive exec = new CommercialExecutive();
+        exec.processSale(15000.00);
+        exec.generateInvoice("TechCorp Ltd.", 15000.00);
+        exec.showSummary();
+    }
+}
