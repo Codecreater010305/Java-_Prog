@@ -1,0 +1,35 @@
+interface Bank {
+    String bankName = "National Bank";
+    void showBankDetails();
+}
+
+interface Customer {
+    void showCustomerDetails();
+}
+
+class Account implements Bank, Customer {
+    String customerName;
+    int accountNo;
+    double balance;
+
+    Account(String name, int accNo, double bal) {
+        customerName = name; accountNo = accNo; balance = bal;
+    }
+
+    public void showBankDetails() {
+        System.out.println("Bank: " + bankName);
+    }
+
+    public void showCustomerDetails() {
+        System.out.println("Customer: " + customerName +
+            ", Account No: " + accountNo + ", Balance: " + balance);
+    }
+}
+
+public class BankProgram {
+    public static void main(String[] args) {
+        Account acc = new Account("Alice", 101, 50000.0);
+        acc.showBankDetails();
+        acc.showCustomerDetails();
+    }
+}
