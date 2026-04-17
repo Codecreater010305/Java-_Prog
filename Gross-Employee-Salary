@@ -1,0 +1,35 @@
+interface Gross {
+    void showGross();
+}
+
+class Employee {
+    String empName;
+    int empId;
+
+    Employee(String name, int id) { empName = name; empId = id; }
+
+    void showEmployee() {
+        System.out.println("Employee: " + empName + ", ID: " + empId);
+    }
+}
+
+class Salary extends Employee implements Gross {
+    double basic, hra, da;
+
+    Salary(String name, int id, double basic, double hra, double da) {
+        super(name, id);
+        this.basic = basic; this.hra = hra; this.da = da;
+    }
+
+    public void showGross() {
+        System.out.println("Gross Salary: " + (basic + hra + da));
+    }
+}
+
+public class SalaryProgram {
+    public static void main(String[] args) {
+        Salary s = new Salary("Bob", 201, 30000, 5000, 3000);
+        s.showEmployee();
+        s.showGross();
+    }
+}
