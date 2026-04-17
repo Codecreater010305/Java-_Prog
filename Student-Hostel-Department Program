@@ -1,0 +1,75 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+
+interface Department {
+    String deptName = "Computer Science";
+    String deptHead = "Dr. Smith";
+    void printAttributes();
+}
+
+class Hostel {
+    String hostelName, hostelLocation;
+    int numberOfRooms;
+
+    Hostel(String name, String loc, int rooms) {
+        hostelName = name; hostelLocation = loc; numberOfRooms = rooms;
+    }
+    void getData() {}
+    void printData() {
+        System.out.println("Hostel: " + hostelName + ", Location: " + hostelLocation + ", Rooms: " + numberOfRooms);
+    }
+}
+
+class Student extends Hostel implements Department {
+    String studentName, regdNo, electiveSubject;
+    double avgMarks;
+
+    Student(String name, String reg, String elective, double marks) {
+        super("Sunrise Hostel", "Block A", 100);
+        studentName = name; regdNo = reg;
+        electiveSubject = elective; avgMarks = marks;
+    }
+
+    public void printAttributes() {
+        System.out.println("Dept: " + deptName + ", Head: " + deptHead);
+    }
+
+    void getData() { printData(); printAttributes(); }
+
+    void printData() {
+        System.out.println("Name: " + studentName + ", RegNo: " + regdNo +
+            ", Elective: " + electiveSubject + ", Avg Marks: " + avgMarks);
+        super.printData();
+    }
+}
+
+public class StudentDriver {
+    static ArrayList<Student> list = new ArrayList<>();
+    static Scanner sc = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        int choice;
+        do {
+            System.out.println("\n1. Admit Student\n2. Migrate Student\n3. Display Details\n0. Exit");
+            choice = sc.nextInt(); sc.nextLine();
+            switch (choice) {
+                case 1:
+                    System.out.print("Name: "); String name = sc.nextLine();
+                    System.out.print("RegNo: "); String reg = sc.nextLine();
+                    System.out.print("Elective: "); String elec = sc.nextLine();
+                    System.out.print("Avg Marks: "); double marks = sc.nextDouble();
+                    list.add(new Student(name, reg, elec, marks));
+                    System.out.println("Student admitted.");
+                    break;
+                case 2:
+                    System.out.print("Enter RegNo to migrate: "); String r = sc.nextLine();
+                    list.removeIf(s -> s.regdNo.equals(r));
+                    System.out.println("Student migrated.");
+                    break;
+                case 3:
+                    list.forEach(Student::printData);
+                    break;
+            }
+        } while (choice != 0);
+    }
+}
